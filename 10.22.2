@@ -1,0 +1,54 @@
+void Bracket_Match(T* str, int len)
+//  利用stack栈判断括号是否匹配
+//  输入参数：字符串序列，字符串长度
+//  若匹配输出YES，否则输出NO，末尾换行
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+	Stack *s = Stack_Create(23333);
+	for(int i=0;i<len;i++)
+	{
+		if( str[i] == '{' || str[i] == '[' || str[i] == '(' )
+			Stack_Push(s,str[i]);
+		else 
+		{
+			if( Stack_IsEmpty(s) == true )
+			{
+				printf("NO\n");
+				return ;
+			}
+			if( str[i] == '}' )
+			{
+				if( Stack_Top(s) != '{' )
+				{
+				 	printf("NO\n");
+					return ;
+				}
+				Stack_Pop(s);
+			}
+			else if( str[i] == ']' )
+			{
+				if( Stack_Top(s) != '[' )
+				{
+				 	printf("NO\n");
+					return ;
+				}
+				Stack_Pop(s);
+			}
+			else if( str[i] == ')' )
+			{
+				if( Stack_Top(s) != '(' )
+				{
+				 	printf("NO\n");
+					return ;
+				}
+				Stack_Pop(s);
+			}
+		}
+	}
+	if( Stack_IsEmpty(s) == false )
+		printf("NO\n");
+    else printf("YES\n");
+	return ;
+    /********** End **********/
+}
