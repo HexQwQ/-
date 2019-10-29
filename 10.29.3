@@ -1,0 +1,54 @@
+bool isEmpty(CycleQueue* que)
+//  判断队列que是否为空
+//  若空返回 true 并在一行打印 The queue is Empty 末尾换行！！！
+//  否则返回 false
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    if( que->size_ == 0 )
+	{
+		printf("The queue is Empty\n");
+		return true;
+	}
+	return false;
+    /********** End **********/
+
+}
+
+void enQueue(CycleQueue* que, int item)
+//  实现入队操作：将元素item加入队列que尾部
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+	Node *node = new Node;
+	node->data = item;
+	if( que->size_ == 0 )
+	{
+		que->rear = node;
+		que->rear->next = node;
+	}
+	else
+	{
+		Node *temp = que->rear->next;
+      	que->rear->next = node;
+     	node->next = temp;
+     	que->rear = node;
+	}
+	que->size_++;
+    /********** End **********/
+
+}
+
+int deQueue(CycleQueue* que)
+//  实现出队操作：移除队列que首部元素，并返回元素值
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+    Node *node = que->rear->next;
+	que->rear->next = node->next;
+	que->size_--;
+	return node->data;
+
+    /********** End **********/
+
+}
