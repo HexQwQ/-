@@ -1,0 +1,25 @@
+void Palindrome(T* str, int len)
+//  利用stack栈判断字符串是否为回文串
+//  输入参数：字符串序列，字符串长度
+//  若是回文串输出YES，否则输出NO，末尾换行
+{
+    // 请在这里补充代码，完成本关任务
+    /********** Begin *********/
+	Stack *s = Stack_Create(233333);
+	for(int i=0;i<len;i++)
+		Stack_Push(s,str[i]);
+    for(int i=0;i<len;i++)
+	{
+		if( str[i] == Stack_Top(s) ) 
+			Stack_Pop(s);
+		else 
+		{
+			printf("NO\n");
+			return ;
+		}
+	}
+    printf("YES\n");
+    return ;
+    
+    /********** End **********/
+}
